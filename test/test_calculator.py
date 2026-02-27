@@ -1,5 +1,10 @@
-import pytest
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 import calculator
+
 
 def test_sumar():
     assert calculator.sumar(2, 3) == 5
@@ -14,5 +19,6 @@ def test_dividir():
     assert calculator.dividir(10, 2) == 5
 
 def test_dividir_entre_cero():
+    import pytest
     with pytest.raises(ValueError):
         calculator.dividir(10, 0)
