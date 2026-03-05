@@ -1,133 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Simple</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .container {
-            background-color: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 400px;
-        }
-        
-        .header {
-            background-color: #667eea;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-        
-        .input-group {
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #667eea;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        .buttons-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .btn {
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .btn-operation {
-            background-color: #667eea;
-            color: white;
-        }
-        
-        .btn-operation:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .result-box {
-            background-color: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        
-        .result-box p {
-            color: #2e7d32;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
-        .result-box .result-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1b5e20;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Calculadora Simple</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.calculadora{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    width:250px;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+    cursor:pointer;
+}
+
+.resultado{
+    margin-top:10px;
+    font-weight:bold;
+    text-align:center;
+}
+
+</style>
+
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🧮 Calculadora Simple</h1>
-            <p>Realiza operaciones matemáticas</p>
-        </div>
-        
-        <div class="input-group">
-            <input type="number" id="num1" placeholder="Primer número">
-            <input type="number" id="num2" placeholder="Segundo número">
-        </div>
-        
-        <div class="buttons-group">
-            <button class="btn btn-operation">➕ Sumar</button>
-            <button class="btn btn-operation">➖ Restar</button>
-            <button class="btn btn-operation">✖️ Multiplicar</button>
-            <button class="btn btn-operation">➗ Dividir</button>
-        </div>
-        
-        <div class="result-box">
-            <p>Resultado:</p>
-            <div class="result-value">0</div>
-        </div>
-    </div>
+
+<div class="calculadora">
+
+<h2>Calculadora</h2>
+
+<input type="number" id="num1" placeholder="Número 1">
+<input type="number" id="num2" placeholder="Número 2">
+
+<button onclick="sumar()">Sumar</button>
+<button onclick="restar()">Restar</button>
+<button onclick="multiplicar()">Multiplicar</button>
+<button onclick="dividir()">Dividir</button>
+
+<div class="resultado" id="resultado"></div>
+
+</div>
+
+
+<script>
+
+function obtenerValores(){
+
+let a = parseFloat(document.getElementById("num1").value);
+let b = parseFloat(document.getElementById("num2").value);
+
+if(isNaN(a) || isNaN(b)){
+    mostrar("Ingresa ambos números");
+    return null;
+}
+
+return {a,b};
+}
+
+function mostrar(texto){
+document.getElementById("resultado").innerText = texto;
+}
+
+function sumar(){
+
+let valores = obtenerValores();
+if(!valores) return;
+
+let resultado = valores.a + valores.b;
+
+mostrar("Resultado: " + resultado);
+
+}
+
+function restar(){
+
+let valores = obtenerValores();
+if(!valores) return;
+
+let resultado = valores.a - valores.b;
+
+mostrar("Resultado: " + resultado);
+
+}
+
+function multiplicar(){
+
+let valores = obtenerValores();
+if(!valores) return;
+
+let resultado = valores.a * valores.b;
+
+mostrar("Resultado: " + resultado);
+
+}
+
+function dividir(){
+
+let valores = obtenerValores();
+if(!valores) return;
+
+if(valores.b === 0){
+    mostrar("Error: no se puede dividir entre 0");
+    return;
+}
+
+let resultado = valores.a / valores.b;
+
+mostrar("Resultado: " + resultado);
+
+}
+
+</script>
+
 </body>
 </html>
